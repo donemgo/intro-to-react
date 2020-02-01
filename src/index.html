@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">not rendered</div>
+    <!-- now the unpkg is the CDN for NPM packages. remember how we have a CDN for JQUERY and also a CDN for bootstrap. we can pull in the react library from the CDN. Also the reason we are pulling in two packages is this,you might have heard of react-native, React itself is just a library and it gives us a way of interacting with react, while react-dom is what takes our react code and renders it to the screen. React and React native both share the same library  -->
+    <script src="https://unpkg.com/react@16.8.4/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.8.4/umd/react-dom.development.js"></script>
+    <script>
+        // this is where we can write bare bones react
+        const Hotel = (props) => {
+            return React.createElement("div", {}, [
+                React.createElement("h1", {}, props.name),
+                React.createElement("h2", {}, props.place),
+                React.createElement("h3", {}, props.slang)
+            ])
+        }
+        const App = () => {
+            return React.createElement(
+                "div",
+                { class: 'this-id' }, // this are where we pass the attributes of the child element
+                [
+                    React.createElement("h1", {}, "welcome to react guys"),
+                    React.createElement("h1", {}, "welcome to react guys"),
+                    React.createElement(Hotel, { name: 'react', place: "we are learning in yaba", slang: "mad oh!" }),
+                    React.createElement(Hotel, { name: 'html', place: "we are learning in surulere", slang: "bomboclat!" }),
+                    React.createElement(Hotel, { name: 'css', place: "we are learning in akoka", slang: "mad oh!" })
+                ] // here we pass in the children. it could be an array or it could be singular [React.createElement("h1", {}, "welcome to react guys"), React.createElement("h1", {}, "welcome to react guys")]
+            )
+        };
+        ReactDOM.render(React.createElement(App), document.querySelector("#root"))
+    </script>
+</body>
+
+</html>
